@@ -1,13 +1,14 @@
 #pycaret[Full]
 #fastapi
 #protobuf==3.20.*
-pydantic==1.*
+pandas
 streamlit
 streamlit-pandas-profiling
-pandas-profiling
-ipykernel
-ipywidgets
-#pandas
+ydata_profiling
+pydantic==1.*
+#ipykernel
+#ipywidgets
+
 #numpy
 
 
