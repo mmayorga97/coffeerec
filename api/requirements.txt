@@ -1,0 +1,15 @@
+#pycaret[Full]
+#protobuf==3.20.*
+#streamlit
+#streamlit-pandas-profiling
+#ydata_profiling
+#pydantic==1.*
+fastapi
+uvicorn
+pandas
+#ipykernel
+#ipywidgets
+
+#numpy
+
+
