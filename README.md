@@ -1,16 +1,44 @@
-# coffeerec
-Coffee Recommender
+# Coffee Recommender - [Marcelino Mayorga Quesada](https://marcelino.mayorga.com)
 
-Coffee Data Source
-Coffee Quality Data (CQI May-2023) - https://www.kaggle.com/datasets/fatihb/coffee-quality-data-cqi/code
-Streamlit GCP Tutorial - https://dev.to/whitphx/how-to-deploy-streamlit-apps-to-google-app-engine-407o
+## Table of Contents
 
-Recommenders - https://github.com/microsoft/recommenders
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Usage](#usage)
+- [Contributing](../CONTRIBUTING.md)
 
+## About <a name = "about"></a>
 
-gcloud builds submit --tag gcr.io/portfoliobot/coffeerecapp:latest.
+This is a simple machine learning excercise with the objective to recommend coffee leveraging Coffee Quality Institute's data and applying Content-Based Filtering
 
+## Getting Started <a name = "getting_started"></a>
 
-> **Step 5** - Validate image has been uploaded `https://console.cloud.google.com/gcr/images/portfoliobot/global/portfolioapp?project=portfoliobot`
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
-> **Step 6** - Head to Run Cloud and run a new revision with the new uploaded image `https://console.cloud.google.com/run/detail/us-central1/portfolioapp/metrics?project=portfoliobot`
+### Prerequisites
+
+What things you need to install the software and how to install them, comes in the requirements.txt
+
+```
+streamlit
+streamlit-pandas-profiling
+pandas
+scikit-learn
+conda
+```
+
+### Installing and Running
+1 - Creating and Activating conda local environment use "rc.bat" under name "coffeerec"
+```
+rc.bat
+```
+
+2 - run streamlit
+```
+run streamlit app/streamlit-app.py
+```
+
+2.1 - OR Docker on root folder and with Docker Desktop running
+```
+docker-compose up --build
+```

@@ -1,14 +1,5 @@
-#pycaret[Full]
-#protobuf==3.20.*
 streamlit
 streamlit-pandas-profiling
-#ydata_profiling
 pydantic==1.*
-#fastapi
 pandas
-#ipykernel
-#ipywidgets
-
-#numpy
-
-
+scikit-learn
