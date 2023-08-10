@@ -107,7 +107,7 @@ def main():
             filter_value= st.selectbox("Lot Numbers", lot_numbers)
         clicked = st.button("Recommend")
         if clicked:
-            st.subheader("Top 5 Recommendations:")
+            st.subheader("Top 10 Recommendations:")
             st.write(get_coffee_recommendation(filter_value,filter_type))
         st.divider()
         st.subheader("Code - [Jupyter Notebook](https://github.com/mmayorga97/coffeerec/blob/main/recommender.ipynb)")
