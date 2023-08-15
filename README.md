@@ -28,12 +28,12 @@ conda
 ```
 
 ### Installing and Running
-1 - Creating and Activating conda local environment use "rc.bat" under name "coffeerec"
+1 - Creating and Activating conda local "coffeerec" environment on Terminal: use "rc.bat"
 ```
 rc.bat
 ```
 
-2 - run streamlit
+2 - on Terminal and under root folder, run streamlit
 ```
 run streamlit app/streamlit-app.py
 ```

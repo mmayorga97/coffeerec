@@ -1,12 +1,14 @@
+# Imports
+import os
+import random
 import pandas as pd
 import streamlit as st
-import os
 import streamlit.components.v1 as components  # Import Streamlit
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import linear_kernel
-import random
+from sklearn.preprocessing import MinMaxScaler
 
+# Streamlit Config
 st.set_page_config(
    page_title="Coffee Recommender - Marcelino Mayorga Quesada",
    page_icon="☕",
@@ -14,7 +16,10 @@ st.set_page_config(
    initial_sidebar_state="expanded",
 )
 
+# Main
 def main():
+
+    # streamlit requires this method in here
     def get_coffee_recommendation(key_value='costa rica',key_id='country_of_origin', top_n=10):
         data = get_preprocessed_data()
 
@@ -51,12 +56,17 @@ def main():
 
         recommendations = get_recommendations(key_value,key_id, cosine_sim, data)
         return recommendations[0:top_n]
-
+    
+    # Build Title and Tabs
     st.write("Coffee Quality Data (CQI May-2023) Recommender by [Marcelino Mayorga Quesada](https://www.linkedin.com/in/marcelinomayorga/)")
-    tab0, tab1, tab2, tab3 = st.tabs(["Intro", "Dataset", "Analysis & Preprocess", "Recommendation Demo"])
+    tabIntro, tabDataset, tabPreprocess, tabDemo = st.tabs(["Intro", "Dataset", "Analysis & Preprocess", "Recommendation Demo"])
+
+    # Get raw data and preprocess data
     raw_data = get_raw_data()
     prep_data = get_preprocessed_data()
-    with tab0:
+
+    # Tab Content
+    with tabIntro:
         st.subheader("About")
         st.markdown(f"- **Purpose:** This is a simple machine learning excercise with the objective to recommend coffee leveraging Coffee Quality Institute's data and applying Content-Based Filtering")
         st.markdown(f"- **Recommenders:** There are two ways to build recommenders: Collaboritve Filtering that leverages user information which we don't have at this moment and can be applied with toolkits like [Microsoft's Recommenders](https://github.com/microsoft/recommenders), or [Tensorflow Recommenders](https://github.com/tensorflow/recommenders), or [Surprise](https://surprise.readthedocs.io/en/stable/) and Content-Based Filtering through the coffee attributes(Aroma, Flavor, Aftertaste, etc) that can be achieved easily with [Scikit-learn](https://scikit-learn.org/stable/).")
@@ -68,7 +78,7 @@ def main():
         st.markdown("- Scikit-Learn [Scikit-Learn](https://scikit-learn.org/stable/)")
         st.markdown("- Cloud [Google Cloud Platform](https://cloud.google.com/)")
         st.markdown("- Github [Code](https://github.com/mmayorga97/coffeerec)")
-    with tab1:
+    with tabDataset:
         st.subheader("Sensory evaluations (coffee quality scores):")
         st.markdown("- Aroma: Refers to the scent or fragrance of the coffee.")
         st.markdown("- Flavor: The flavor of coffee is evaluated based on the taste, including any sweetness, bitterness, acidity, and other flavor notes.")
@@ -83,20 +93,20 @@ def main():
         st.subheader("Raw Data")
         st.write(f"🔗 [Coffee **Raw** Quality Data (CQI May-2023)](https://www.kaggle.com/datasets/fatihb/coffee-quality-data-cqi)")
         st.write(raw_data)
-    with tab2:
+    with tabPreprocess:
         st.subheader("Data Profiling - Report")
         report = get_report_html()
         components.html(report,height=900, width=None, scrolling=True)
         st.divider()
         st.subheader("Preprocessed Data - [Jupyter Notebook](https://github.com/mmayorga97/coffeerec/blob/main/data_preprocess.ipynb)")
-        st.markdown("Actions : ")
+        st.markdown("Summary of actions: ")
+        st.markdown("- Overall data clean over the string/object attributes: filling NAs, set text to lower, standarize some repeated values, etc.")
         st.markdown("- Removed Columns: ID, Unnamed, ICO Number, Number of Bags, Bag of Weight, Clean Cup, Sweetness, Harvest Year, Defect Info(Cat1 & Cat2), Certification Info (Status, Expiration,etc.) ")
         st.markdown("- Fixed Columns: Altitude (using mean value of range), Standarize Color and Processing methods columns.")
         st.write(f"🔗 [Coffee **Preprocessed** Quality Data (CQI May-2023)](https://www.kaggle.com/datasets/fatihb/coffee-quality-data-cqi)")
         st.write(prep_data)
-    with tab3:
+    with tabDemo:
         st.subheader("Demo")
-        #with st.form(key='my_form'):
         st.subheader("Filter by:")
         filter_type = st.radio("",('lot_number','country_of_origin'),key='filter_type',index=0,label_visibility='hidden')
         countries = prep_data['country_of_origin'].drop_duplicates()
@@ -145,8 +155,13 @@ def main():
                     coffee_indices = [i[0] for i in sim_scores]
                     return data[coffee_item_features+normalized_columns].iloc[coffee_indices]
 
+                # get recommendations using a key and value
                 recommendations = get_recommendations(key_value,key_id, cosine_sim, data)
+                # return top_n values
                 return recommendations[0:top_n]
+
+# Note: easily could be done an API to retrieve data but this is a demo and there is no need to overengine.
+
 @st.cache_data
 def get_raw_data():
     dataset = os.getcwd() + ("/app/coffee_may2023.csv")
