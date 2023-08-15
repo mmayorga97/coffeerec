@@ -4,20 +4,19 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
+- [Installing and Running](#installing)
 
 ## About <a name = "about"></a>
 
-This is a simple machine learning excercise with the objective to recommend coffee leveraging Coffee Quality Institute's data and applying Content-Based Filtering
+This is a simple machine learning exercise with the objective to recommend coffee leveraging Coffee Quality Institute's data and applying Content-Based Filtering
 
 ## Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them, comes in the requirements.txt
+[Conda](https://docs.conda.io/en/latest/) and requirements.txt
 
 ```
 streamlit
@@ -27,7 +26,7 @@ scikit-learn
 conda
 ```
 
-### Installing and Running
+### Installing and Running<a name = "installing"></a>
 1 - Creating and Activating conda local "coffeerec" environment on Terminal: use "rc.bat"
 ```
 rc.bat
