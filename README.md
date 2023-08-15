@@ -2,9 +2,13 @@
 
 ## Table of Contents
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Installing and Running](#installing)
+- [Coffee Recommender - Marcelino Mayorga Quesada](#coffee-recommender---marcelino-mayorga-quesada)
+  - [Table of Contents](#table-of-contents)
+  - [About ](#about-)
+  - [Getting Started ](#getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Installing and Running](#installing-and-running)
+    - [Jupyter Notebooks](#jupyter-notebooks)
 
 ## About <a name = "about"></a>
 
@@ -41,3 +45,7 @@ run streamlit app/streamlit-app.py
 ```
 docker-compose up --build
 ```
+
+### Jupyter Notebooks<a name = "notebooks"></a>
+1 - [data_preprocess.ipynb](data_preprocess.ipynb): Analysis and data preprocess.
+2 - [recommender.ipynb](recommender.ipynb): Recommender using the preprocessed data.
