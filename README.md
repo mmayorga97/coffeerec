@@ -38,13 +38,15 @@ rc.bat
 
 2 - on Terminal and under root folder, run streamlit
 ```
-run streamlit app/streamlit-app.py
+streamlit run app/streamlit-app.py
 ```
 
 2.1 - OR Docker on root folder and with Docker Desktop running
 ```
 docker-compose up --build
 ```
+
+3 - Upload to cloud
 
 ### Jupyter Notebooks<a name = "notebooks"></a>
 1 - [data_preprocess.ipynb](data_preprocess.ipynb): Analysis and data preprocess.

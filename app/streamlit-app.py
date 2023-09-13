@@ -30,7 +30,7 @@ def main():
 
         # Normalize 'rating' column to [0, 1] range for feature representation
         scaler = MinMaxScaler()
-        normalized_columns = ['aftertaste','balance','flavor','aroma','body','acidity','moisture_percentage','quakers','overall','total_cup_points','altitude']
+        normalized_columns = ['aftertaste','balance','flavor','aroma','body','acidity','moisture_percentage','quakers','altitude']
         normalized_features = scaler.fit_transform(data[normalized_columns])
         normalized_data = pd.DataFrame(normalized_features, columns=normalized_columns)
 
@@ -101,7 +101,7 @@ def main():
         st.subheader("Preprocessed Data - [Jupyter Notebook](https://github.com/mmayorga97/coffeerec/blob/main/data_preprocess.ipynb)")
         st.markdown("Summary of actions: ")
         st.markdown("- Overall data clean over the string/object attributes: filling NAs, set text to lower, standarize some repeated values, etc.")
-        st.markdown("- Removed Columns: ID, Unnamed, ICO Number, Number of Bags, Bag of Weight, Clean Cup, Sweetness, Harvest Year, Defect Info(Cat1 & Cat2), Certification Info (Status, Expiration,etc.) ")
+        st.markdown("- Removed Columns: ID, Unnamed, ICO Number, Number of Bags, Bag of Weight, Clean Cup, Sweetness, Harvest Year, Defect Info(Cat1 & Cat2), Certification Info (Status, Expiration,etc.) and grading Overall and Total Cup Points ")
         st.markdown("- Fixed Columns: Altitude (using mean value of range), Standarize Color and Processing methods columns.")
         st.write(f"🔗 [Coffee **Preprocessed** Quality Data (CQI May-2023)](https://www.kaggle.com/datasets/fatihb/coffee-quality-data-cqi)")
         st.write(prep_data)
@@ -132,7 +132,7 @@ def main():
 
                 # Normalize columns to [0, 1] range for feature representation
                 scaler = MinMaxScaler()
-                normalized_columns = ['aftertaste','balance','flavor','aroma','body','acidity','moisture_percentage','quakers','overall','total_cup_points','altitude']
+                normalized_columns = ['aftertaste','balance','flavor','aroma','body','acidity','moisture_percentage','quakers','altitude']
                 normalized_features = scaler.fit_transform(data[normalized_columns])
                 normalized_data = pd.DataFrame(normalized_features, columns=normalized_columns)
 
