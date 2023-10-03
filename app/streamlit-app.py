@@ -52,9 +52,15 @@ def main():
             sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
             sim_scores = sim_scores[1:]  # Exclude the base coffee itself (most similar)
             coffee_indices = [i[0] for i in sim_scores]
-            return data[coffee_item_features+normalized_columns].iloc[coffee_indices]
+            return data[coffee_item_features+normalized_columns+['producer']].iloc[coffee_indices]
 
         recommendations = get_recommendations(key_value,key_id, cosine_sim, data)
+
+        # add search
+        def generate_url(row):
+            return f'<a target="_blank" href="https://search.brave.com/search?q={row["producer"]} + {row["mill"]}">Info</a>'
+
+        recommendations.insert(0, 'Search', recommendations.apply(generate_url,axis=1))
         return recommendations[0:top_n]
     
     # Build Title and Tabs
@@ -118,7 +124,8 @@ def main():
         clicked = st.button("Recommend")
         if clicked:
             st.subheader("Top 10 Recommendations:")
-            st.write(get_coffee_recommendation(filter_value,filter_type))
+            st.write(get_coffee_recommendation(filter_value,filter_type).to_html(escape=False, index=False), unsafe_allow_html=True)
+
         st.divider()
         st.subheader("Code - [Jupyter Notebook](https://github.com/mmayorga97/coffeerec/blob/main/recommender.ipynb)")
         with st.echo():
@@ -157,6 +164,11 @@ def main():
 
                 # get recommendations using a key and value
                 recommendations = get_recommendations(key_value,key_id, cosine_sim, data)
+                # add search
+                def generate_url(row):
+                    return f'<a target="_blank" href="https://search.brave.com/search?q={row["producer"]} + {row["mill"]}">Info</a>'
+
+                recommendations.insert(0, 'Search', recommendations.apply(generate_url,axis=1))
                 # return top_n values
                 return recommendations[0:top_n]
 
